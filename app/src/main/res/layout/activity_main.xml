@@ -1,19 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/game_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
+    <!-- 제한시간 텍스트 -->
     <TextView
+        android:id="@+id/tv_timer_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="제한시간"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 점수 텍스트 -->
+    <TextView
+        android:id="@+id/tv_score_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="점수"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 시계 아이콘 -->
+    <ImageView
+        android:id="@+id/iv_timer_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_timer"
+        android:contentDescription="타이머 아이콘"
+        app:layout_constraintTop_toBottomOf="@+id/tv_timer_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- 문제 이미지 -->
+    <ImageView
+        android:id="@+id/iv_question_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="문제 이미지"
+        app:layout_constraintTop_toBottomOf="@+id/iv_timer_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.4"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_bg" />
+
+    <!-- 정답 텍스트 -->
+    <TextView
+        android:id="@+id/tv_answer_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정답"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/iv_question_image"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <!-- 정답 입력창 -->
+    <EditText
+        android:id="@+id/et_answer_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="여기에 입력"
+        android:backgroundTint="@color/black"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/tv_answer_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
