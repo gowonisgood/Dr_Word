@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "650519610425",
+    "project_id": "drword-b84b4",
+    "storage_bucket": "drword-b84b4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650519610425:android:abc613ed0a31bbed9d79e8",
+        "android_client_info": {
+          "package_name": "com.example.dr_word"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdXJOjMcP5orusga1wkUWvK4kqbobh77Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
