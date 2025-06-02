@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var ivLogin: ImageView
     private lateinit var ivSettings: ImageView /* setting */
-
+    private lateinit var tvWelcome: TextView /* GO : 환영 메시지용 */
     // Firestore 인스턴스
     private val db = FirebaseFirestore.getInstance()
 
@@ -41,6 +42,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    private var hasWelcomed = false /* GO : 첫 로그인 후 환영 메시지 상태 */
 
     // 2) MainActivity에서 돌아올 때 결과를 받을 Launcher 선언 (별도 런처)
     private val mainLauncher = registerForActivityResult(
@@ -71,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.et_password)
         ivLogin   = findViewById(R.id.iv_login)
         ivSettings = findViewById(R.id.iv_settings) /* setting */
+        tvWelcome  = findViewById(R.id.tv_welcome) /* welcome */
 
         /* GO : game */
         ivLogin.setOnClickListener {
@@ -82,6 +86,11 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (hasWelcomed) {  // GO: 두 번째 클릭부터는 MainActivity로 이동
+                navigateToMain(nickname, password)
+                return@setOnClickListener
+            }
+
             // 컬렉션 "login" -> 문서 ID = nickname
             val docRef = db.collection("login").document(nickname)
             docRef.get()
@@ -90,7 +99,8 @@ class LoginActivity : AppCompatActivity() {
                         // 기존 사용자: 필드 "password" 비교
                         val storedPwd = doc.getString("password")
                         if (storedPwd == password) {
-                            navigateToMain(nickname, password)
+                            showWelcome(nickname)  // GO: 첫 로그인 시 환영 메시지
+                            hasWelcomed = true
                         } else {
                             Toast.makeText(this, "비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
                         }
@@ -103,7 +113,9 @@ class LoginActivity : AppCompatActivity() {
                         docRef.set(user)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "회원가입 및 로그인 성공", Toast.LENGTH_SHORT).show()
-                                navigateToMain(nickname, password)
+                                showWelcome(nickname)  // GO: 신규 가입 후 환영 메시지
+                                hasWelcomed = true
+
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -134,6 +146,13 @@ class LoginActivity : AppCompatActivity() {
             settingsLauncher.launch(intent)
         }
         /* GO : settings end */
+    }
+
+    private fun showWelcome(nickname: String) {
+        etNickname.visibility = EditText.GONE
+        etPassword.visibility = EditText.GONE
+        tvWelcome.text = "환영합니다 $nickname 님"
+        tvWelcome.visibility = TextView.VISIBLE
     }
 
     private fun navigateToMain(nickname: String, password: String) {
