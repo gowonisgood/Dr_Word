@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                         // 기존 사용자: 필드 "password" 비교
                         val storedPwd = doc.getString("password")
                         if (storedPwd == password) {
-                            navigateToMain()
+                            navigateToMain(nickname, password)
                         } else {
                             Toast.makeText(this, "비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
                         }
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                         docRef.set(user)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "회원가입 및 로그인 성공", Toast.LENGTH_SHORT).show()
-                                navigateToMain()
+                                navigateToMain(nickname, password)
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -67,8 +67,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+    private fun navigateToMain(nickname: String, password: String) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("EXTRA_NICKNAME", nickname)
+            putExtra("EXTRA_PASSWORD", password)
+        }
+        startActivity(intent)
         finish()
     }
 }
