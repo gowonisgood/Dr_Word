@@ -37,10 +37,22 @@ android {
 }
 
 dependencies {
-
     implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
     implementation("com.google.firebase:firebase-firestore-ktx:25.1.3")
     implementation("com.google.firebase:firebase-storage-ktx")
+
+    // Gemini 사용을 위한 google SDK
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+
+    // retrofit 사용
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // json 파싱을 위한 gson
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // 네이버 API에서 받은 이미지 띄우기 위함
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

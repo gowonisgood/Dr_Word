@@ -18,7 +18,20 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="8dp" />  <!-- 아래 마진 추가 -->
+
+    <!-- 현재 점수 표시 텍스트뷰 추가 -->
+    <TextView
+        android:id="@+id/tv_current_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_score_label"
+        app:layout_constraintStart_toStartOf="@id/tv_score_label"
+        android:layout_marginTop="8dp"/>
 
     <!-- 점수 텍스트 -->
     <TextView
@@ -31,6 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+
     <!-- 시계 아이콘 -->
     <ImageView
         android:id="@+id/iv_timer_icon"
@@ -38,12 +52,20 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_timer"
         android:contentDescription="타이머 아이콘"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timer_label"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_timer_label"
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-    <!-- 문제 이미지 -->
+    <!-- 남은 시간 텍스트 -->
+    <TextView
+        android:id="@+id/tv_remaining_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30초"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iv_timer_icon"
+        app:layout_constraintBottom_toBottomOf="@id/iv_timer_icon"
+        android:layout_marginStart="12dp"/>
 
     <Button
         android:id="@+id/tv_title"
@@ -52,7 +74,7 @@
         android:paddingHorizontal="32dp"
         android:paddingVertical="16dp"
         android:backgroundTint="#D1D1D1"
-        android:text="힌트"
+        android:text="제출"
         android:textColor="@color/black"
         android:textAlignment="center"
         android:textSize="16dp"
@@ -65,11 +87,11 @@
         android:layout_marginEnd="8dp"
         />
 
+    <!-- 문제 이미지 -->
     <ImageView
         android:id="@+id/iv_question_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
         android:contentDescription="문제 이미지"
         app:layout_constraintTop_toBottomOf="@+id/iv_timer_icon"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +99,8 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHeight_percent="0.4"
         android:layout_marginTop="24dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         android:background="@drawable/rounded_bg" />
 
     <!-- 정답 텍스트 -->
