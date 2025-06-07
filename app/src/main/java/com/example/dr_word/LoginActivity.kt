@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var ivLogin: ImageView
     private lateinit var ivSettings: ImageView /* setting */
     private lateinit var tvWelcome: TextView /* GO : 환영 메시지용 */
+    private lateinit var ivFavorite: ImageView
     // Firestore 인스턴스
     private val db = FirebaseFirestore.getInstance()
 
@@ -75,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
         ivLogin   = findViewById(R.id.iv_login)
         ivSettings = findViewById(R.id.iv_settings) /* setting */
         tvWelcome  = findViewById(R.id.tv_welcome) /* welcome */
+        ivFavorite = findViewById(R.id.iv_favorite) /* score */
 
         /* GO : game */
         ivLogin.setOnClickListener {
@@ -146,6 +148,26 @@ class LoginActivity : AppCompatActivity() {
             settingsLauncher.launch(intent)
         }
         /* GO : settings end */
+
+        /* GO : go to score board */
+        ivFavorite.setOnClickListener {
+            // 닉네임·비번 입력 여부와 무관하게 점수판 열고 싶다면 바로 이동
+            startActivity(Intent(this, ScoreActivity::class.java))
+
+            // 만약 닉네임이 비어 있으면 막고 싶다면:
+            /*
+            val nickname = etNickname.text.toString().trim()
+            if (nickname.isEmpty()) {
+                Toast.makeText(this, "닉네임 입력 후 이용해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val intent = Intent(this, ScoreActivity::class.java)
+            intent.putExtra("EXTRA_NICKNAME", nickname)   // 필요 시 전달
+            startActivity(intent)
+            */
+        }
+        /* GO : go to score board end */
+
     }
 
     private fun showWelcome(nickname: String) {
