@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -27,6 +28,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ScoreActivity"/>
+        <activity android:name=".FriendsActivity"/>
 
     </application>
 
