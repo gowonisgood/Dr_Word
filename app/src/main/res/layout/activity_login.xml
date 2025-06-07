@@ -7,20 +7,7 @@
     android:background="@android:color/white"
     android:padding="24dp">
 
-    <!-- 타이틀: 텍스트 크기·패딩 키움 -->
-
-    <!-- 즐겨찾기 아이콘: 타이틀에 붙이기 -->
-
-    <!-- 닉네임 입력: 위쪽 여백 크게 -->
-    <!-- 기존 32dp → 48dp -->
-
-    <!-- 비밀번호 입력: 위쪽 여백 크게 -->
-    <!-- 기존 16dp → 32dp -->
-
-    <!-- 로그인 아이콘: 중앙에서 살짝 왼쪽으로 -->
-
-    <!-- 설정 아이콘: 동일하게 살짝 왼쪽 -->
-
+    <!-- 타이틀 -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="350dp"
@@ -38,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 즐겨찾기 아이콘 -->
     <ImageView
         android:id="@+id/iv_favorite"
         android:layout_width="32dp"
@@ -46,23 +34,9 @@
         android:contentDescription="즐겨찾기"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:paddingHorizontal="32dp"
-        android:paddingVertical="16dp"
-        android:text="닉네임"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title" />
-
+    <!-- 닉네임 입력 필드 -->
     <EditText
         android:id="@+id/et_nickname"
         android:layout_width="0dp"
@@ -75,43 +49,30 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
-        android:paddingHorizontal="32dp"
-        android:paddingVertical="16dp"
-        android:text="비밀번호"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+        app:layout_constraintHorizontal_bias="0" />
 
+    <!-- 비밀번호 입력 필드 -->
     <EditText
         android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@android:color/darker_gray"
         android:hint="비밀번호"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:padding="12dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/et_nickname"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_nickname" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0" />
 
+    <!-- 로그인 버튼(아이콘) -->
     <ImageView
         android:id="@+id/iv_login"
         android:layout_width="48dp"
@@ -119,11 +80,12 @@
         android:layout_marginTop="32dp"
         android:contentDescription="로그인"
         android:src="@drawable/ic_login_arrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintTop_toBottomOf="@id/et_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_password" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057" />
 
+    <!-- 설정 버튼(아이콘) -->
     <ImageView
         android:id="@+id/iv_settings"
         android:layout_width="48dp"
@@ -131,9 +93,24 @@
         android:layout_marginTop="24dp"
         android:contentDescription="설정"
         android:src="@drawable/ic_settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintTop_toBottomOf="@id/iv_login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_login" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057" />
+
+    <!-- 환영 메시지 -->
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="환영합니다"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
