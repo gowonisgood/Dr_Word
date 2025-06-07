@@ -52,6 +52,8 @@ dependencies {
     // 네이버 API에서 받은 이미지 띄우기 위함
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

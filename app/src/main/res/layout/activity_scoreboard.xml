@@ -24,7 +24,7 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_default_profile"
+            android:src="@drawable/ic_default_doctor"
             android:contentDescription="프로필"
             android:layout_gravity="end"
             android:padding="4dp"/>
