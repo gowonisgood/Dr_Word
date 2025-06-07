@@ -1,6 +1,7 @@
 package com.example.dr_word
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -103,5 +104,11 @@ class ScoreActivity : AppCompatActivity() {
                 contactsPermLauncher.launch(Manifest.permission.READ_CONTACTS)
             }
         }
+
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            setResult(Activity.RESULT_OK)   // scoreLauncher로 열었다면 결과 전달
+            finish()                        // 단순 startActivity였다면 이 한 줄이면 충분
+        }
     }
+
 }

@@ -46,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
 
     private var hasWelcomed = false /* GO : 첫 로그인 후 환영 메시지 상태 */
 
+
+
     // 2) MainActivity에서 돌아올 때 결과를 받을 Launcher 선언 (별도 런처)
     private val mainLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -66,6 +68,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     /* GO : 양방향 엑티비티 end */
+
+    // 3)  ScoreActivity에서 돌아올 때 결과를 받을 Launcher 선언 (별도 런처)
+    private val scoreLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,7 +163,8 @@ class LoginActivity : AppCompatActivity() {
         /* GO : go to score board */
         ivFavorite.setOnClickListener {
             // 닉네임·비번 입력 여부와 무관하게 점수판 열고 싶다면 바로 이동
-            startActivity(Intent(this, ScoreActivity::class.java))
+            val intent = Intent(this, ScoreActivity::class.java)
+            scoreLauncher.launch(intent)
 
             // 만약 닉네임이 비어 있으면 막고 싶다면:
             /*
