@@ -156,8 +156,8 @@ class MainActivity : AppCompatActivity() {
             val maxIndex = probabilities.indices.maxByOrNull { probabilities[it] } ?: -1
             val resultLabel = if (maxIndex in labels.indices) labels[maxIndex] else "알 수 없음"
 
-            // 7. EditText에 결과 표시
-            editText.setText(resultLabel)
+            // 7. 토스트에 힌트표시
+            Toast.makeText(this@MainActivity, "추론 결과: $resultLabel", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -243,7 +243,7 @@ class MainActivity : AppCompatActivity() {
             modelName = "gemini-1.5-flash",
             apiKey = apiKey
         )
-        val prompt = "아무런 추가 설명없이 동물 영어 단어 10개 생성해"
+        val prompt = "아무런 추가 설명없이 동물 단어 10개 생성해"
         val response = generativeModel.generateContent(prompt)
         val text = response.text ?: ""
         return text.split(",").map { it.trim() }
