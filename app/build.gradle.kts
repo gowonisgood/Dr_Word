@@ -52,6 +52,9 @@ dependencies {
     // 네이버 API에서 받은 이미지 띄우기 위함
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
+    // tensorflow 머신러닝 모델 사용
+    implementation ("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation ("org.tensorflow:tensorflow-lite-support:0.4.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
